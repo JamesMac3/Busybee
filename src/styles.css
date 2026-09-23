@@ -1281,3 +1281,34 @@ h3 { font-size: 1.1875rem; font-weight: 700; letter-spacing: -0.01em; line-heigh
   .btn:hover, .btn:active, .picker-option:hover, .service-card:hover, .work-card:hover,
   .btn:hover .icon, .work-card:hover .work-media img, .portrait:hover .portrait-frame img { translate: none; scale: none; }
 }
+
+/* ---------- Bees orbiting the "One busy hive" heading ---------- */
+.hive-title { position: relative; isolation: isolate; }
+.hive-title .section-heading { position: relative; z-index: 1; }
+.orbit-bees { position: absolute; inset: 0; pointer-events: none; }
+.orbit-bee {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 28px;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.orbit-bees:not(.is-ready) .orbit-bee { visibility: hidden; }
+.orbit-bee svg { display: block; filter: drop-shadow(0 3px 3px rgb(15 61 36 / 0.18)); }
+.orbit-bee-wing {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: orbit-flap 0.1s ease-in-out infinite alternate;
+}
+.orbit-bee-wing-back { animation-delay: 0.05s; }
+@keyframes orbit-flap {
+  from { transform: scaleY(1); }
+  to { transform: scaleY(0.45); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .orbit-bee-wing { animation: none; }
+}
+/* Bees fly off screen; clip them at the viewport edges without adding sideways scroll. */
+#services { overflow-x: clip; }

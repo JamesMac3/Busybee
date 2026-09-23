@@ -2,6 +2,7 @@ import { services } from '../content.js';
 import { useQuote } from '../quoteStore.jsx';
 import SectionHeading from './SectionHeading.jsx';
 import Icon from './Icon.jsx';
+import OrbitBees from './OrbitBees.jsx';
 
 function ServiceCard({ icon, title, text, problem }) {
   const { selected, toggle } = useQuote();
@@ -33,12 +34,15 @@ export default function Services() {
   return (
     <section id="services" className="section section-tint" aria-labelledby="services-title">
       <div className="container">
-        <SectionHeading
-          id="services-title"
-          eyebrow="Services"
-          title="One busy hive. A whole yard of possibilities."
-          intro="Choose one service or bundle a few. Anything you add here shows up in your quote."
-        />
+        <div className="hive-title">
+          <SectionHeading
+            id="services-title"
+            eyebrow="Services"
+            title="One busy hive. A whole yard of possibilities."
+            intro="Choose one service or bundle a few. Anything you add here shows up in your quote."
+          />
+          <OrbitBees count={4} />
+        </div>
         <ul className="service-grid">
           {services.map((s) => (
             <ServiceCard key={s.title} {...s} />
