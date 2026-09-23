@@ -107,7 +107,6 @@ export const work = {
   eyebrow: 'Picture the possibilities',
   title: 'Less yard work. More yard pride.',
   intro: 'Clean stripes, crisp edges, and beds that look finished. Pick your next yard upgrade and let the hive get busy.',
-  note: 'Landscape inspiration shown with illustrative photography, not completed Busy Bee projects.',
   items: [
     {
       key: 'stripes',

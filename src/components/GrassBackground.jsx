@@ -1,12 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { mulberry32 } from '../seededRandom.js';
 import '../lawn.css';
 
 // A self-contained lawn scene. No frame-by-frame React updates or external assets.
 export default function GrassBackground() {
   const canvasRef = useRef(null);
-  const controls = useRef({ paused: false, restart: false });
-  const [paused, setPaused] = useState(false);
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext('2d');
@@ -24,7 +22,7 @@ export default function GrassBackground() {
     };
     const bee = (x, y, size, phase, direction = 1, driver = false) => {
       ctx.save(); ctx.translate(x,y); ctx.scale(size * direction,size);
-      const flap = reduced || controls.current.paused ? 0.7 : 0.45 + Math.abs(Math.sin(phase * 29)) * 0.55;
+      const flap = reduced ? 0.7 : 0.45 + Math.abs(Math.sin(phase * 29)) * 0.55;
       oval(-5,-10,7,10 * flap,'#e3f5ed',-0.5); oval(4,-10,6,8 * flap,'#b8ded2',0.4);
       oval(0,0,12,8,'#f4cf35');
       ctx.save(); ctx.beginPath(); ctx.ellipse(0,0,12,8,0,0,Math.PI*2); ctx.clip();
@@ -100,13 +98,11 @@ export default function GrassBackground() {
     const stop=()=>{ cancelAnimationFrame(raf); raf=0; last=0; };
     const tick=(now)=>{
       raf=0;
-      if(controls.current.restart) { elapsed=2.2; controls.current.restart=false; }
-      if(!controls.current.paused) elapsed+=Math.min((now-(last||now))/1000,.06);
+      elapsed+=Math.min((now-(last||now))/1000,.06);
       last=now; draw();
-      if(visible&&!document.hidden&&!reduced&&!controls.current.paused) raf=requestAnimationFrame(tick);
+      if(visible&&!document.hidden&&!reduced) raf=requestAnimationFrame(tick);
     };
     const start=()=>{ if(!raf&&visible&&!document.hidden&&!reduced) raf=requestAnimationFrame(tick); };
-    controls.current.refresh=start;
     const resize=()=>{
       W=canvas.clientWidth; H=canvas.clientHeight;
       const dpr=Math.min(devicePixelRatio||1,1.5);
@@ -133,10 +129,6 @@ export default function GrassBackground() {
   },[]);
   return <div className="lawn-scene">
     <div className="lawn-scene-heading"><span><i aria-hidden="true" /> These bees mean business.</span>
-      <div className="lawn-controls">
-        <button type="button" onClick={()=>{controls.current.restart=true;controls.current.paused=false;setPaused(false);controls.current.refresh?.();}} aria-label="Replay the lawn mowing animation">Mow it again <span aria-hidden="true">↻</span></button>
-        <button type="button" aria-label={paused?'Play lawn animation':'Pause lawn animation'} aria-pressed={paused} onClick={()=>{controls.current.paused=!paused;setPaused(!paused);controls.current.refresh?.();}}>{paused?'Play':'Pause'}</button>
-      </div>
     </div>
     <canvas ref={canvasRef} className="lawn-canvas" aria-hidden="true" />
   </div>;

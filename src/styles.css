@@ -653,15 +653,6 @@ h3 { font-size: 1.1875rem; font-weight: 700; letter-spacing: -0.01em; line-heigh
   .work-trim .work-media { aspect-ratio: auto; height: clamp(340px, 34vw, 470px); }
 }
 
-.work-note {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  margin-top: 24px;
-  color: var(--muted);
-  font-size: 0.9375rem;
-}
-.work-note .icon { margin-top: 3px; color: var(--green-600); }
 
 /* ---------- Services ---------- */
 .service-grid { display: grid; gap: 16px; }
@@ -1209,7 +1200,6 @@ h3 { font-size: 1.1875rem; font-weight: 700; letter-spacing: -0.01em; line-heigh
   }
   .footer-nav ul { justify-content: center; margin-left: 0; }
   .footer-contact { flex-direction: column; align-items: flex-end; gap: 2px; }
-  .footer-bottom .photo-credit { margin-left: auto; }
 }
 
 /* ---------- Mobile quote bar ---------- */

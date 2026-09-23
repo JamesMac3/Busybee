@@ -49,10 +49,6 @@ export default function Work() {
             <WorkCard key={item.key} item={item} />
           ))}
         </div>
-        <p className="work-note">
-          <Icon name="info" size={18} />
-          {work.note}
-        </p>
       </div>
     </section>
   );

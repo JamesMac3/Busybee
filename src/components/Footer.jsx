@@ -48,7 +48,6 @@ export default function Footer() {
           © {year} {business.name}
         </p>
         <p className="concept-notice">Website concept prepared for Busy Bee Lawn.</p>
-        <p className="photo-credit">Illustrative photography via Unsplash.</p>
       </div>
     </footer>
   );
