@@ -19,7 +19,7 @@ export default function Hero() {
         <figcaption className="hero-grounds-caption">
           <span>RESIDENTIAL · COMMERCIAL · HOA</span>
           <strong>From your front yard<br />to your entire property.</strong>
-          <small>Illustrative landscape photography</small>
+          <small>*Sample illustrative landscape photography</small>
         </figcaption>
       </figure>
 
